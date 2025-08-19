@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,16 +28,38 @@ fun App() {
     MaterialTheme {
         val geminiApi = remember { geminiAI() }
         val scope = rememberCoroutineScope()
+        var quetion by remember { mutableStateOf("") }
+        var screentxt by remember { mutableStateOf("") }
+        Column(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .safeContentPadding()
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+        TextField(
+            value = quetion,
+            onValueChange = {newText -> quetion = newText},
+            label = {Text("enter the quetion")}
+        )
         Button(onClick = {
             scope.launch {
-            geminiApi.generateContent(prompt = "how fast is a cat")
+            geminiApi.generateContent(prompt = quetion)
                 .collect { response ->
                     println("response =  ${response.text}")
+                    screentxt += "${response.text}"
+
                 }
+
             }
-        }) {
+
+        }
+            ) {
             Text("ask AI")
         }
+            Text(text = screentxt)
+
+            }
         var showContent by remember { mutableStateOf(false) }
 /*
         Column(
