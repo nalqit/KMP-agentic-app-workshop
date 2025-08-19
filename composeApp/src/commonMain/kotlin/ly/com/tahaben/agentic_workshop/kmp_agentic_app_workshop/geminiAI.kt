@@ -9,7 +9,7 @@ class geminiAI {
 
     val generativeModel = GenerativeModel(
         modelName = "gemini-2.5-flash",
-        "AIzaSyBk3OdNqB-_E397VIZ5cCAwSSlqaNDGebo"
+        "<apikey>"
     )
 
     fun generateContent(prompt: String): Flow<GenerateContentResponse> {
