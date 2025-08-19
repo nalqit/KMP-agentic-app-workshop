@@ -23,6 +23,7 @@ import kmp_agentic_app_workshop.composeapp.generated.resources.compose_multiplat
 @Preview
 fun App() {
     MaterialTheme {
+        val geminiApi = remember { geminiAI() }
         var showContent by remember { mutableStateOf(false) }
         Column(
             modifier = Modifier
@@ -32,7 +33,7 @@ fun App() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
+                Text("Click!")
             }
             AnimatedVisibility(showContent) {
                 val greeting = remember { Greeting().greet() }

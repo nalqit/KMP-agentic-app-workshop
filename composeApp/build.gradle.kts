@@ -67,6 +67,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation("dev.shreyaspatil.generativeai:generativeai-google:0.9.0-1.1.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
